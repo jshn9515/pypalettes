@@ -1,0 +1,42 @@
+[project]
+name = "pypalettes"
+version = "0.1.0"
+description = "A large (+2500) collection of color maps for Python"
+authors = [
+    { name = "Joseph Barbier", email = "joseph.barbierdarnal@gmail.com" }
+]
+maintainers = [
+    { name = "jshn9515", email = "jshn9510@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.11"
+license = "GPL-3.0-only"
+dependencies = [
+    "matplotlib>=3.10.0"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/JosephBARBIERDARNAL/pypalettes"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pypalettes"]
+
+[tool.setuptools.package-data]
+"pypalettes" = ["palettes.csv"]
+
+[build-system]
+requires = ["setuptools>=72.0", "wheel"]
+build-backend = "setuptools.build_meta"

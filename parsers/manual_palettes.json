@@ -1,0 +1,16 @@
+{
+    "data_to_viz": {
+        "kind": "categorical",
+        "name": "data-to-viz",
+        "palette": "['#70b4a4', '#280c6c', '#ffffff']",
+        "paletteer-kind": "unknown",
+        "source": "data-to-viz.com"
+    },
+    "wanteeed": {
+        "kind": "sequential",
+        "name": "Wanteeed",
+        "palette": "['#10345c', '#ffacac']",
+        "paletteer-kind": "unknown",
+        "source": "wanteeed.com"
+    }
+}
