@@ -86,14 +86,14 @@ class ExtendColormap(mcolors.Colormap):
         else:
             return self.cmap(np.linspace(0, 1, self.N))
 
-    def reversed(self, inplace: bool = False):
+    def reversed(self, name: str | None = None, inplace: bool = False):
         """Return a new SmartColormap with the reversed colormap."""
         if inplace:
-            self.cmap = self.cmap.reversed()
+            self.cmap = self.cmap.reversed(name)
             self.name = self.cmap.name
             return self
         else:
-            return ExtendColormap(self.cmap.reversed(), cmap_type=self.cmap_type)
+            return ExtendColormap(self.cmap.reversed(name), cmap_type=self.cmap_type)
 
     def resampled(self, lutsize: int, inplace: bool = False):
         """Return a new SmartColormap with N colors using matplotlib's native resampled method."""
