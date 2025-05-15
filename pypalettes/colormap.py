@@ -62,6 +62,10 @@ class ExtendColormap(mcolors.Colormap):
     def __repr__(self):
         return f'ExtendColormap({self.name}, cmap_type={self.cmap_type})'
 
+    def __getitem__(self, item: Any):
+        """Get a color or a range of colors from the colormap."""
+        return self.palette[item]
+
     def __getattr__(self, name: str):
         """Delegate attribute access to the underlying colormap."""
         return getattr(self.cmap, name)
