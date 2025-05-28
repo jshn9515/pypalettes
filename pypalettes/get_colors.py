@@ -51,7 +51,4 @@ def load_palettes(palettes_path: str = 'palettes.csv'):
 def get_suggestions(name: str):
     suggestions = get_close_matches(name, PALETTES, n=5, cutoff=0.01)
     suggestions = ', '.join(suggestions)
-    raise ValueError(
-        f"Palette with name '{name}' not found. Did you mean: {suggestions}?\n"
-        f'See available palettes at https://python-graph-gallery.com/color-palette-finder/.'
-    )
+    return suggestions

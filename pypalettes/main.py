@@ -22,8 +22,12 @@ def get_cmap(
     """
     try:
         cmap = plt.get_cmap(name, N)
-    except ValueError:
-        get_suggestions(name)
+    except ValueError as err:
+        suggestions = get_suggestions(name)
+        raise ValueError(
+            f"Palette with name '{name}' not found. Did you mean: {suggestions}?\n"
+            f'See available palettes at https://python-graph-gallery.com/color-palette-finder/.'
+        ) from err
 
     if isinstance(cmap, ExtendColormap):
         assert cmap.cmap_type == 'discrete'
