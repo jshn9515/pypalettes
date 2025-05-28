@@ -32,8 +32,7 @@ class ExtendColormap(mcolors.Colormap):
         if cmap_type == 'discrete':
             cmap = ListedColormap(name=name, colors=colors, N=N)
         elif cmap_type == 'continuous':
-            if N is None:
-                N = 256
+            N = 256 if N is None else N
             cmap = LinearSegmentedColormap.from_list(name=name, colors=colors, N=N)
         else:
             raise ValueError("cmap_type argument must be 'continuous' or 'discrete'.")
