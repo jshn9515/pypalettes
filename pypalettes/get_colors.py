@@ -33,8 +33,8 @@ def load_palettes(palettes_path: str = 'palettes.csv'):
                     isinstance(color, str) for color in hex_list
                 ):
                     raise ValueError('palette must be a list of hex color strings.')
-            except Exception as e:
-                raise ValueError(f'Error parsing palette: {e}')
+            except Exception as err:
+                raise ValueError(f'Error parsing palette: {err}')
 
             cmap_discrete = ExtendColormap.from_colors(
                 name=row['name'],
