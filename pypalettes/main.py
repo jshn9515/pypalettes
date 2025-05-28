@@ -56,7 +56,7 @@ def add_cmap(
     cmap_type: str,
     colors: npt.ArrayLike,
     N: int = 256,
-    force: bool = True,
+    force: bool = False,
 ) -> ExtendColormap:
     """
     Create a matplotlib colormap from an iterable of colors.
@@ -66,7 +66,7 @@ def add_cmap(
         cmap_type (str): Type of colormap: 'continuous' or 'discrete'.
         colors (npt.ArrayLike): An iterable of valid matplotlib colors. More about valid colors: https://python-graph-gallery.com/python-colors/.
         N (int, optional): Number of colors in the colormap. Default is 256.
-        force (bool, optional): If True, overwrites the registered colormap with the same name if it exists. Default is True.
+        force (bool, optional): If True, overwrites the registered colormap with the same name if it exists. Default is False.
     """
     cmap = ExtendColormap.from_colors(
         name=name,
