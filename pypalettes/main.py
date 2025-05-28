@@ -75,8 +75,8 @@ def add_cmap(
         N=N,
     )
 
-    warnings.filterwarnings(
-        'ignore', category=UserWarning, message='.*that was already in the registry.*'
-    )
-    mpl.colormaps.register(cmap=cmap, force=force)
+    with warnings.catch_warnings():
+        warnings.simplefilter('ignore', UserWarning)
+        mpl.colormaps.register(cmap=cmap, force=force)
+
     return cmap
