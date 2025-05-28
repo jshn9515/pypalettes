@@ -1,5 +1,5 @@
 import itertools
-from typing import Any, Self, Sequence, overload
+from typing import Any, Literal, Self, Sequence, overload
 
 import matplotlib.colors as mcolors
 import matplotlib.pyplot as plt
@@ -89,6 +89,15 @@ class ExtendColormap(mcolors.Colormap):
         else:
             return self.cmap(np.linspace(0, 1, self.N))
 
+    @overload
+    def reversed(
+        self, name: str | None = None, inplace: Literal[True] = True
+    ) -> Self: ...
+    @overload
+    def reversed(
+        self, name: str | None = None, inplace: Literal[False] = False
+    ) -> 'ExtendColormap': ...
+
     def reversed(self, name: str | None = None, inplace: bool = False):
         """Return a new SmartColormap with the reversed colormap."""
         if inplace:
@@ -97,6 +106,13 @@ class ExtendColormap(mcolors.Colormap):
             return self
         else:
             return ExtendColormap(self.cmap.reversed(name), cmap_type=self.cmap_type)
+
+    @overload
+    def resampled(self, lutsize: int, inplace: Literal[True] = True) -> Self: ...
+    @overload
+    def resampled(
+        self, lutsize: int, inplace: Literal[False] = False
+    ) -> 'ExtendColormap': ...
 
     def resampled(self, lutsize: int, inplace: bool = False):
         """Return a new SmartColormap with N colors using matplotlib's native resampled method."""
@@ -109,14 +125,14 @@ class ExtendColormap(mcolors.Colormap):
                 self.cmap.resampled(lutsize), cmap_type=self.cmap_type
             )
 
-    def truncate(self, start: float = 0.0, end: float = 1.0):
+    def truncate(self, start: float = 0.0, end: float = 1.0) -> 'ExtendColormap':
         """Truncate the colormap to a subrange [start, end] and return a new Colormap."""
         x = np.linspace(start, end, self.N)
         name = f'{self.name}_trunc_{start:.2f}_{end:.2f}'
         colors = self.cmap(x)
         return self._create_cmap(name, colors, self.N)
 
-    def with_alpha(self, alpha: float = 1.0):
+    def with_alpha(self, alpha: float = 1.0) -> 'ExtendColormap':
         """Set a uniform alpha value for all colors in the colormap."""
         colors = self.cmap(np.linspace(0, 1, 256))
         colors[:, -1] = alpha
