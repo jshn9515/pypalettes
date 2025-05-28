@@ -10,7 +10,9 @@ from .get_colors import get_suggestions
 
 
 def get_cmap(
-    name: str, cmap_type: str = 'continuous', N: int | None = None
+    name: str,
+    N: int | None = None,
+    cmap_type: str = 'continuous',
 ) -> ExtendColormap:
     """
     Load colormap from name.
